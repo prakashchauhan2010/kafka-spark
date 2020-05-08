@@ -1,0 +1,18 @@
+1. CREATE KAFKA TOPIC.
+kafka-topics --create \
+--bootstrap-server ip-20-0-31-210.ec2.internal:9092 \
+--replication-factor 1 \
+--partitions 1 \
+--topic spark-kafka-prakash
+
+2. START KAFKA CONSOLE PRODUCER.
+kafka-console-producer \
+--broker-list ip-20-0-31-210.ec2.internal:9092 \
+--topic spark-kafka-prakash
+
+3. RUN SPARK STREAMING JOB
+spark2-submit \
+--class KafkaWordCount \
+--master yarn \
+/mnt/home/edureka_45354/kafka/target/scala-2.10/spark-kafka-project_2.10-1.0.jar \
+ip-20-0-21-161.ec2.internal:2181 mygroup spark-kafka-prakash 4
